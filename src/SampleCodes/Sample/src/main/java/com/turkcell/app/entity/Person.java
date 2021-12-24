@@ -1,61 +1,118 @@
 package com.turkcell.app.entity;
 
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Person {
-    private String m_firstName;
-    private Optional<String> m_middleName;
-    private String m_familyName;
-    //...
+    private static final DateTimeFormatter ms_dateTimeFormatter;
+    private int m_id;
+    private String m_name;
+    private String m_gender;
+    private LocalDate m_birthDate;
+    private MaritalStatus m_maritalStatus;
 
-    public Person(String firstName, String familyName)
-    {
-        m_firstName = firstName;
-        m_middleName = Optional.empty();
-        m_familyName = familyName;
+    static {
+         ms_dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
 
-    public Person(String firstName, String middleName, String familyName)
+    public Person setId(int id)
     {
-        m_firstName = firstName;
-        m_middleName = Optional.of(middleName);
-        m_familyName = familyName;
+        m_id = id;
+
+        return this;
     }
 
-    public String getFirstName()
+    public Person setName(String name)
     {
-        return m_firstName;
+        //..
+        m_name = name;
+
+        return this;
     }
 
-    public void setFirstName(String firstName)
+    public Person setGender(String gender)
     {
-        m_firstName = firstName;
+        //..
+        m_gender = gender;
+
+        return this;
     }
 
-    public Optional<String> getMiddleName()
+    public Person setBirthDate(String str)
     {
-        return m_middleName;
+        return setBirthDate(LocalDate.parse(str, ms_dateTimeFormatter));
     }
 
-    public void setMiddleName(String middleName)
+    public Person setBirthDate(int day, int month, int year)
     {
-        m_middleName = Optional.of(middleName);
+        return setBirthDate(LocalDate.of(year, month, day));
     }
 
-    public String getFamilyName()
+    public Person setBirthDate(LocalDate birthDate)
     {
-        return m_familyName;
+        m_birthDate = birthDate;
+
+        return this;
     }
 
-    public void setFamilyName(String familyName)
+    public Person setMaritalStatus(MaritalStatus maritalStatus)
     {
-        m_familyName = familyName;
+        m_maritalStatus = maritalStatus;
+
+        return this;
+    }
+
+    public int getId()
+    {
+        return m_id;
+    }
+
+    public String getName()
+    {
+        return m_name;
+    }
+
+    public String getGender()
+    {
+        return m_gender;
+    }
+
+    public LocalDate getBirthDate()
+    {
+        return m_birthDate;
+    }
+
+    public double getAge()
+    {
+        return ChronoUnit.DAYS.between(m_birthDate, LocalDate.now()) / 365.;
+    }
+
+    public MaritalStatus getMaritalStatus()
+    {
+        return m_maritalStatus;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return m_id;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (!(obj instanceof Person))
+            return false;
+
+        return ((Person)obj).m_id == m_id;
     }
 
     @Override
     public String toString()
     {
-        return String.format("%s %s%s", m_firstName, m_middleName.isPresent() ? m_middleName.get() + " " : "", m_familyName);
+        return String.format("[%d]%s:%s(%s->%.2f)\"%s\"", m_id, m_name, m_gender,
+                ms_dateTimeFormatter.format(m_birthDate), this.getAge(), m_maritalStatus);
     }
 
     //...

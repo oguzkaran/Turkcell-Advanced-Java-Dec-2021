@@ -1,4 +1,4 @@
-package com.turkcell.app.entity;
+package com.turkcell.app.dto;
 
 public class ProductNameStockDTO {
     public String name;

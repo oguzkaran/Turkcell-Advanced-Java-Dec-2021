@@ -1,7 +1,10 @@
 package com.turkcell.app.converter;
 
+import com.turkcell.app.dto.ProductDetailInfoDTO;
 import com.turkcell.app.entity.ProductInfo;
-import com.turkcell.app.entity.ProductNameStockDTO;
+import com.turkcell.app.dto.ProductNameStockDTO;
+
+import java.math.BigDecimal;
 
 public class ProductConverter {
     private final ProductInfo m_productInfo;
@@ -12,6 +15,12 @@ public class ProductConverter {
     }
 
     //...
+
+    public ProductDetailInfoDTO toProductDetailInfoDTO()
+    {
+        return new ProductDetailInfoDTO(m_productInfo, m_productInfo.getPrice().subtract(m_productInfo.getCost())
+                .multiply(BigDecimal.valueOf(m_productInfo.getStock())));
+    }
 
     public ProductNameStockDTO toProductStockDTO()
     {
