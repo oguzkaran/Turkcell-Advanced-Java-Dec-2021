@@ -25,7 +25,9 @@ public class RandomPasswordGeneratorApp {
 
     private static void generateCallback(RandomPasswordsToFileGenerator generator)
     {
-        new Thread(() -> handleGenerator(generator)).start();
+        var thread = new Thread(() -> handleGenerator(generator));
+
+        thread.start();
     }
 
     public static void run(String [] args)
