@@ -1,4 +1,4 @@
-package com.turkcell.app.random;
+package com.turkcell.app.concurrent.random;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
