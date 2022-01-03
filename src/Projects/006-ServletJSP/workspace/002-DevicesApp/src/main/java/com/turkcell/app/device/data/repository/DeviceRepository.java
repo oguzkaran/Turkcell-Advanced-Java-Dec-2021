@@ -1,21 +1,22 @@
 package com.turkcell.app.device.data.repository;
 
+import static com.turkcell.app.device.data.repository.Global.PASSWORD;
+import static com.turkcell.app.device.data.repository.Global.URL;
+import static com.turkcell.app.device.data.repository.Global.USERNAME;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.csystem.util.data.repository.RepositoryException;
-
 import com.turkcell.app.device.data.entity.Device;
 
-import static com.turkcell.app.device.data.repository.Global.*;
-
-public class DeviceRepository implements IDeviceRepository {	
+public class DeviceRepository implements IDeviceRepository {		
 	private static final String FIND_ALL_SQL_CMD = "select * from devices";
+	private static final String FIND_BY_NAME_CONTAINS_SQL_CMD = "select * from devices where name like ?";
+	
 	
 	private static Device getDevice(ResultSet rs) throws SQLException
 	{
@@ -23,22 +24,36 @@ public class DeviceRepository implements IDeviceRepository {
 	}
 
 	@Override
-	public Iterable<Device> findAll()
+	public Iterable<Device> findAll() throws SQLException
 	{
 		List<Device> devices = new ArrayList<>();
 		
 		try (var conn = DriverManager.getConnection(URL, USERNAME, PASSWORD); 
-				Statement stmt = conn.createStatement()) {
+				var stmt = conn.createStatement()) {		
 			var rs = stmt.executeQuery(FIND_ALL_SQL_CMD);
 			
 			while (rs.next()) 
 				devices.add(getDevice(rs));
 			
 			return devices;			
+		}		
+	}
+	
+	@Override
+	public Iterable<Device> findByNameContains(String str) throws SQLException
+	{
+		List<Device> devices = new ArrayList<>();
+		
+		try (var conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				var stmt = conn.prepareStatement(FIND_BY_NAME_CONTAINS_SQL_CMD)) {
+			stmt.setString(1, "%" + str + "%");	
 			
-		}			
-		catch (Throwable ex) {
-			throw new RepositoryException("findAll", ex);
+			var rs = stmt.executeQuery();
+			
+			while (rs.next()) 
+				devices.add(getDevice(rs));
+			
+			return devices;
 		}
 	}
 	
@@ -79,8 +94,6 @@ public class DeviceRepository implements IDeviceRepository {
 		throw new UnsupportedOperationException("existsById");
 	}
 
-	
-
 	@Override
 	public Iterable<Device> findAllById(Iterable<Integer> ids) 
 	{
@@ -103,12 +116,5 @@ public class DeviceRepository implements IDeviceRepository {
 	public <S extends Device> Iterable<S> save(Iterable<S> entities) 
 	{
 		throw new UnsupportedOperationException("save");
-	}
-
-	@Override
-	public Iterable<Device> findDeviceByNameContains(String str) 
-	{
-		throw new UnsupportedOperationException("findDeviceByNameContains");
-	}
-	
+	}	
 }
