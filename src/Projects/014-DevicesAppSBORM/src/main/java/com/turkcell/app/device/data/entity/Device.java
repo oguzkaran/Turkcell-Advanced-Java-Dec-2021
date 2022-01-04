@@ -1,6 +1,7 @@
 package com.turkcell.app.device.data.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "devices")
@@ -15,21 +16,8 @@ public class Device { //POJO
 
 	@Column(nullable = false, length = 15)
 	public String host;
-	
-	public Device()
-	{
-		this(0, "", "");
-	}
-	
-	public Device(int id, String name, String host)
-	{		
-		this.id = id;
-		this.name = name;
-		this.host = host;
-	}
-	
-	public Device(String name, String host)
-	{	
-		this(0, name, host);
-	}		
+
+	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	public Set<PortInfo> ports;
+	//...
 }

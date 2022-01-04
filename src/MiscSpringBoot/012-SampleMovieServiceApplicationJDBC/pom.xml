@@ -21,7 +21,7 @@
 	<repositories>
 		<repository>
 			<id>javaapp1-feb-2021</id>
-			<url>http://raw.github.com/oguzkaran/javaapp1-feb-2021-maven-repo/main</url>
+			<url>https://raw.github.com/oguzkaran/javaapp1-feb-2021-maven-repo/main</url>
 		</repository>
 	</repositories>
 
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.24.jre7</version>
+			<version>42.3.1</version>
 		</dependency>
 
 		<dependency>

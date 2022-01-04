@@ -28,8 +28,7 @@ public class AllDevicesServlet extends HttpServlet {
 			var service = DeviceAppServiceFactory.getService();						
 			var devices = service.findAllDevices();
 			
-			out.println(gson.toJson(devices));
-			
+			out.println(gson.toJson(devices));			
 		}
 		catch (DataServiceException ex) {
 			response.setStatus(503);
