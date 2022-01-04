@@ -14,10 +14,10 @@ public class Device { //POJO
 	@Column(nullable = false, length = 100)
 	public String name;
 
-	@Column(nullable = false, length = 15)
+	@Column(length = 15)
 	public String host;
 
-	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public Set<PortInfo> ports;
 	//...
 }

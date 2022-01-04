@@ -1,5 +1,8 @@
 package com.turkcell.app.device.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 public class DeviceDTO {
 	private String m_deviceName;
 	private String m_host;
@@ -21,11 +24,14 @@ public class DeviceDTO {
 		m_deviceName = deviceName;
 	}
 
+
 	public String getHost()
 	{
 		return m_host;
 	}
 
+	@JsonInclude(value = JsonInclude.Include.NON_NULL)
+	@JsonSetter("deviceHost")
 	public void setHost(String host)
 	{
 		//...

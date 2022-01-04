@@ -21,7 +21,7 @@
 	<repositories>
 		<repository>
 			<id>javaapp1-feb-2021</id>
-			<url>http://raw.github.com/oguzkaran/javaapp1-feb-2021-maven-repo/main</url>
+			<url>https://raw.github.com/oguzkaran/javaapp1-feb-2021-maven-repo/main</url>
 		</repository>
 	</repositories>
 
@@ -45,14 +45,14 @@
 
 		<dependency>
 			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util</artifactId>
-			<version>4.0.0</version>
+			<artifactId>org-csystem-library-parser</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-library-parser</artifactId>
-			<version>1.0.0</version>
+			<artifactId>org-csystem-util</artifactId>
+			<version>4.0.0</version>
 		</dependency>
 
 		<dependency>

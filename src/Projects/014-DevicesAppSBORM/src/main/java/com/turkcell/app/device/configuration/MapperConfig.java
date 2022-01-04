@@ -1,4 +1,4 @@
-package com.turkcell.app.configuration;
+package com.turkcell.app.device.configuration;
 
 import com.turkcell.app.device.mapper.IDeviceMapper;
 import org.mapstruct.factory.Mappers;
