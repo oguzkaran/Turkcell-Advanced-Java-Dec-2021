@@ -1,5 +1,7 @@
 package com.turkcell.app.device.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +15,8 @@ public class PortInfo { //POJO
     @Column(name = "port_num", nullable = false)
     public int num;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "device_id",  nullable = false)
+    @JsonIgnore
     public Device device;
 }
