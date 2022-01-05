@@ -1,9 +1,13 @@
 package com.turkcell.app.device.data.entity;
 
+import java.util.Set;
+
 public class Device { 
 	public int id;
 	public String name;
 	public String host;
+	
+	public Set<PortInfo> ports;
 	
 	public Device()
 	{

@@ -8,6 +8,7 @@ import com.turkcell.app.device.dto.DevicesDTO;
 import com.turkcell.app.device.mapper.IDeviceMapper;
 import com.turkcell.app.device.mapper.IPortMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;

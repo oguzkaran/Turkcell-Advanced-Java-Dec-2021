@@ -6,4 +6,6 @@ import com.turkcell.app.device.data.entity.Device;
 
 public interface IDeviceRepository extends ICrudRepository<Device, Integer> {
 	Iterable<Device> findByNameContains(String str) throws Exception;
+	Iterable<Device> findAll(boolean loadPorts) throws Exception;
+	
 }

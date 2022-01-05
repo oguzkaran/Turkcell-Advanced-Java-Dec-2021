@@ -4,6 +4,7 @@ import com.turkcell.app.device.data.entity.Device;
 import com.turkcell.app.device.data.repository.IDeviceRepository;
 import com.turkcell.app.device.data.repository.IPortRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.csystem.util.data.DatabaseUtil.doWorkForRepository;
 
@@ -22,7 +23,7 @@ public class DeviceServiceAppHelper {
 	{
 		return doWorkForRepository(m_deviceRepository::findAll, "DeviceServiceAppHelper.findAll");				
 	}
-	
+
 	public Iterable<Device> findDeviceByNameContains(String str)
 	{
 		return doWorkForRepository(() -> m_deviceRepository.findByNameContains(str), "DeviceServiceAppHelper.findDeviceByNameContains");
