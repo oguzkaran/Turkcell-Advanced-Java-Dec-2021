@@ -15,7 +15,7 @@ public class PortInfo { //POJO
     @Column(name = "port_num", nullable = false)
     public int num;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "device_id",  nullable = false)
     @JsonIgnore
     public Device device;

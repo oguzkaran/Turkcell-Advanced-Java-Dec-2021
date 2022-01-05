@@ -17,7 +17,7 @@ public class Device { //POJO
 	@Column(length = 15)
 	public String host;
 
-	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public Set<PortInfo> ports;
 	//...
 }

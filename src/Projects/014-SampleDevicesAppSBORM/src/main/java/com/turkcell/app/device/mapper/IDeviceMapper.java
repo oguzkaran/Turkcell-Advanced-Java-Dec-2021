@@ -18,7 +18,7 @@ public interface IDeviceMapper {
     @Mappings(@Mapping(source = "deviceName", target = "name"))
     Device toDevice(DeviceDTO deviceDTO);
 
-    @Mappings(@Mapping(source = "name", target = "deviceName"))
+    @Mappings({@Mapping(source = "name", target = "deviceName")})
     DeviceInfoDTO toDeviceInfoDTO(Device device);
 
     default DevicesDTO toDevicesDTO(List<DeviceDTO> devices)

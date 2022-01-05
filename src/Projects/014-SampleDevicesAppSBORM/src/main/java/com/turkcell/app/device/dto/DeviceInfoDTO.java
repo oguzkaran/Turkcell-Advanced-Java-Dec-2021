@@ -1,16 +1,14 @@
 package com.turkcell.app.device.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.turkcell.app.device.data.entity.PortInfo;
 
 import java.util.Set;
 
 public class DeviceInfoDTO {
     private String m_deviceName;
-
     private String m_host;
 
-    private Set<PortInfo> m_ports;
+    private Set<PortInfoDTO> m_ports;
 
     public String getDeviceName()
     {
@@ -33,12 +31,12 @@ public class DeviceInfoDTO {
         m_host = host;
     }
 
-    public Set<PortInfo> getPorts()
+    public Set<PortInfoDTO> getPorts()
     {
         return m_ports;
     }
 
-    public void setPorts(Set<PortInfo> ports)
+    public void setPorts(Set<PortInfoDTO> ports)
     {
         m_ports = ports;
     }

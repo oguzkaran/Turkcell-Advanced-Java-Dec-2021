@@ -1,7 +1,5 @@
 package com.turkcell.app.device.dto;
 
-import com.turkcell.app.device.data.entity.Device;
-
 import java.util.List;
 
 public class DevicesDTO {
