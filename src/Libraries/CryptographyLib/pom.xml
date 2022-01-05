@@ -5,37 +5,24 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.5</version>
+		<version>2.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>GenericApp</artifactId>
+	<artifactId>org-csystem-util-crypto</artifactId>
 	<version>1.0.0</version>
-	<description>Generic Application Provider</description>
-
-	<repositories>
-		<repository>
-			<id>javaapp2-Jul-2021</id>
-			<url>https://raw.github.com/oguzkaran/javaapp2-jul-2021-maven-repo/main</url>
-		</repository>
-	</repositories>
+	<description>Cryptography Library</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util-console</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util</artifactId>
-			<version>3.0.0</version>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.66</version>
 		</dependency>
 
 		<dependency>
@@ -54,11 +41,9 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<includeSystemScope>true</includeSystemScope>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
 			</plugin>
 		</plugins>
 	</build>
